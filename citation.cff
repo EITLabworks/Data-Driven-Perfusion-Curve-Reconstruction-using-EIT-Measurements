@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: >-
+  Data-Driven Perfusion Curve Reconstruction using Electrical Impedance Tomographic Measurements
+message: >-
+  If you use this repository, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Jacob Peter
+    family-names: Thönes
+    email: jacob.thoenes@uni-rostock.de
+    affiliation: Universität Rostock
+    orcid: 'https://orcid.org/0000-0003-2826-5281'
+repository-code: 'https://github.com/JacobTh98/Data-Driven-Perfusion-Curve-Reconstruction-using-EIT-Measurements'
+url: 'https://github.com/JacobTh98/Data-Driven-Perfusion-Curve-Reconstruction-using-EIT-Measurements'
+keywords:
+  - EIT
+  - Aorta pressure curve
+license: MIT
+version: 1.0
+doi: 
+date-released: '2025-03-01'
