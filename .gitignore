@@ -9,3 +9,4 @@ images/rel_errvae*.png
 images/aorta_pig*.pdf
 src/weights/vae_model_*.h5
 *.csv
+serious_result*
