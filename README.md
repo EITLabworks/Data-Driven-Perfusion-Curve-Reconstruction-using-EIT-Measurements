@@ -1,4 +1,5 @@
-# EIT-Ventilation-Perfusion-Estimator
+# Data-Driven Aortic Pressure Curve Reconstruction using Electrical Impedance Tomographic Measurements
+
 Application of a VAE and a mapper for arterial pressure curve reconstruction of real world experimental data.
 
 
