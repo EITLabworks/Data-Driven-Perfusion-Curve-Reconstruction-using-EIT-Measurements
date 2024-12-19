@@ -108,11 +108,12 @@ class DataLoader:
             del pigs[idx]
 
         # shuffle
+        N = len(Y)
         if shuffle:
-            N = len(Y)
-            shuffle = np.random.randint(N, size=N)
+            shuffle = np.arange(N)
+            np.random.shuffle(shuffle)
         else:
-            shuffle = range(N)
+            shuffle = np.arange(N)
 
         # resample eit signals to equal length
         X = resample_eit(X, self.eit_length)
