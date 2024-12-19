@@ -10,7 +10,7 @@ from scipy.stats import pearsonr
 import numpy as np
 
 
-#def normalize_aorta(y: np.ndarray, invert: bool = False):
+# def normalize_aorta(y: np.ndarray, invert: bool = False):
 #    y = np.array(y)
 #    if invert:
 #        y = y * 20.0 + 85.0
@@ -23,29 +23,31 @@ class AortaNormalizer:
     # TBD: min-max scaling, different scalings?
     def __init__(self, mode="old"):
         self.mode = mode
-        #self.a_min = np.min(Y_true)
-        #self.a_max = np.max(Y_true)
-        #self.scale_factor = 1 / (self.a_max - self.a_min)
-        
+        # self.a_min = np.min(Y_true)
+        # self.a_max = np.max(Y_true)
+        # self.scale_factor = 1 / (self.a_max - self.a_min)
+
         # print(f"Init normalizer with\n min={self.a_min:.2f}, max={self.a_max:.2f}, scaling={self.scale_factor:.2f}.")
-    
+
     def normalize_inverse(self, Y_norm):
         if self.mode == "old":
             Y_true = Y_norm * 20 + 85
-        #else:
+        # else:
         #    Y_true = (Y_norm/self.scale_factor) + self.a_min
         return Y_true
-        
+
     def update_scaling(self, aorta_min, aorta_max):
         self.a_min = aorta_min
         self.a_max = aorta_min
         self.scale_factor = 1 / (aorta_max - aorta_min)
-        print(f"Updated normalizer to\n min={self.a_min:.2f}, max={self.a_max:.2f}, scaling={self.scale_factor:.2f}.")
-        
+        print(
+            f"Updated normalizer to\n min={self.a_min:.2f}, max={self.a_max:.2f}, scaling={self.scale_factor:.2f}."
+        )
+
     def normalize_forward(self, Y_true):
         if self.mode == "old":
-            Y_norm = (Y_true-85) / 20
-        #else:
+            Y_norm = (Y_true - 85) / 20
+        # else:
         #    Y_norm = (Y_true - self.a_min) * self.scale_factor
         return Y_norm
 
@@ -117,7 +119,6 @@ class DataLoader:
         # normalize EIT signals
         X = normalize_eit(X, np.array(pigs), self.norm_eit)
 
-
         # resample/interpolate aorta signals to equal length aorta_length
         Y = [signal.resample(sample, self.aorta_length) for sample in Y]
         # aorta pressure curves without normalization
@@ -126,7 +127,7 @@ class DataLoader:
         # append empty axis for CNNs
         X = X[:, :, :, np.newaxis]
         Y = Y[..., np.newaxis]
-        
+
         pigs = np.array(pigs)
 
         print(f"\nAorta curve min={np.min(Y):.2f}, max={np.max(Y):.2f}")
@@ -134,8 +135,6 @@ class DataLoader:
 
         return X[shuffle, ...], Y[shuffle, ...], pigs[shuffle, ...]
 
-
-        
 
 def load_examples(X: list, y: list, pigs: list, path: str):
     print(f"Loading data from {path}")
@@ -210,12 +209,7 @@ def normalize_eit(X: np.ndarray, pigs: np.ndarray, norm_eit: str) -> np.ndarray:
     return X
 
 
-
-
-
-
-
-def Pearson_correlation(Y_true,Y_pred)->list:
+def Pearson_correlation(Y_true, Y_pred) -> list:
     """
     The Pearson correlation coefficient [1]_ measures the linear relationship
     between two datasets. Like other correlation
@@ -228,7 +222,7 @@ def Pearson_correlation(Y_true,Y_pred)->list:
     list of Pearson correlation coefficients
     """
     corr_number = list()
-    for true,pred in zip(Y_true,Y_pred):
+    for true, pred in zip(Y_true, Y_pred):
         p_nr, _ = pearsonr(true, pred)
         corr_number.append(p_nr)
     corr_number = np.array(corr_number)

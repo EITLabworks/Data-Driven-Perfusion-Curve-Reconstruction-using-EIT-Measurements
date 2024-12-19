@@ -21,29 +21,31 @@ def plot_pca(data):
     plt.show()
 
 
-def plot_relative_error_aorta(Y_true,Y_pred,std,var,mean,s_name = None):
-    mean_err = np.mean((Y_true-Y_pred)/Y_pred, axis=0) * 100
-    std_err = np.std((Y_true-Y_pred)/Y_pred, axis=0) * 100
-    var_err = np.var((Y_true-Y_pred)/Y_pred, axis=0)* 100
+def plot_relative_error_aorta(Y_true, Y_pred, std, var, mean, s_name=None):
+    rel_mae_err = np.mean(np.abs((Y_pred - Y_true) / Y_true), axis=0) * 100
+    std_err = np.std((Y_pred - Y_true) / Y_true, axis=0) * 100  # np.abs()?
+    var_err = np.var((Y_pred - Y_true) / Y_true, axis=0) * 100  # np.abs()?
 
-    MAE = np.sum(np.abs(Y_true - Y_pred))/1024
-    MSE = np.sum((Y_true - Y_pred)**2)/1024
-    PN = np.mean(Pearson_correlation(Y_true,Y_pred))
-    
-    print("MAE", MSE)
-    print("MSE", MAE)
+    L = Y_true.shape[0]
+
+    MAE = np.sum(np.abs(Y_true - Y_pred)) / 1024 / L
+    MSE = np.sum((Y_true - Y_pred) ** 2) / 1024 / L
+    PN = np.mean(Pearson_correlation(Y_true, Y_pred))
+
+    print("MAE", MAE)
+    print("MSE", MSE)
     print("Pearson number", PN)
-    
-    plt.figure(figsize=(6,2))
+
+    plt.figure(figsize=(6, 2))
     if mean:
-        plt.plot(mean_err, label="Mean deviation")
+        plt.plot(rel_mae_err, label="Relative mean absolute error")
     if std:
         plt.plot(std_err, label="Standard deviation")
     if var:
         plt.plot(var_err, label="Variance")
     plt.legend()
     plt.xlabel("Aorta pressure curve index")
-    plt.xticks(ticks=np.linspace(0,1024,5), labels=np.linspace(0,1024,5,dtype=int))
+    plt.xticks(ticks=np.linspace(0, 1024, 5), labels=np.linspace(0, 1024, 5, dtype=int))
     plt.ylabel("Relative error (%)")
     plt.grid()
     plt.tight_layout()
@@ -54,13 +56,13 @@ def plot_relative_error_aorta(Y_true,Y_pred,std,var,mean,s_name = None):
     return MAE, MSE, PN
 
 
-def plot_random_predictions(Y_true,Y_pred,n = 4):
-    r_idx = np.random.randint(0,Y_true.shape[0],size=n)
+def plot_random_predictions(Y_true, Y_pred, n=4):
+    r_idx = np.random.randint(0, Y_true.shape[0], size=n)
     for idx in r_idx:
         print(f"Selected prediction {idx}.")
-        plt.figure(figsize=(6,3))
-        plt.plot(Y_pred[idx],label="Pred")
-        plt.plot(Y_true[idx],label="True")
+        plt.figure(figsize=(6, 3))
+        plt.plot(Y_pred[idx], label="Pred")
+        plt.plot(Y_true[idx], label="True")
         plt.legend()
         plt.grid()
         plt.show()

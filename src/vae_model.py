@@ -156,8 +156,9 @@ def decoder_model(
 
     return latent_inputs, decoded
 
+
 # VAE model defined
-def vae_model(beta = 1.0):
+def vae_model(beta=1.0):
     encoder_inputs, z_mean, z_log_var, z = encoder_model()
     encoder = Model(encoder_inputs, (z_mean, z_log_var, z), name="Encoder")
 
@@ -165,6 +166,7 @@ def vae_model(beta = 1.0):
     decoder = Model(decoder_inputs, decoder_outputs, name="Decoder")
 
     return VAE(encoder, decoder, beta)
+
 
 # Obtaining latent representation
 @tf.function
@@ -181,6 +183,3 @@ def compute_latent_rep(input_data):
     except Exception as e:
         print(f"Error: {e}")
         return None
-
-
-
