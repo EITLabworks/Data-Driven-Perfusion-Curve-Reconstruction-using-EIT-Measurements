@@ -12,10 +12,11 @@ import numpy as np
 
 from scipy.signal import butter, filtfilt
 
+
 def lowpass_filter(data, cutoff=10, fs=1000, order=4):
     nyquist = 0.5 * fs
     normal_cutoff = cutoff / nyquist
-    b, a = butter(order, normal_cutoff, btype='low', analog=False)
+    b, a = butter(order, normal_cutoff, btype="low", analog=False)
     filtered_data = filtfilt(b, a, data, axis=0)
     return filtered_data
 
