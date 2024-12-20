@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 
 
 def output_err_for_LaTeX(Y_true, Y_pred, f_name):
-    mean_err = np.mean((Y_true - Y_pred) / Y_pred, axis=0) * 100
-    std_err = np.std((Y_true - Y_pred) / Y_pred, axis=0) * 100
-    var_err = np.var((Y_true - Y_pred) / Y_pred, axis=0) * 100
+    rel_mae_err = np.mean(np.abs((Y_pred - Y_true) / Y_true), axis=0) * 100
+    std_err = np.std(np.abs((Y_pred - Y_true) / Y_true), axis=0) * 100  # np.abs()?
+    var_err = np.var(np.abs((Y_pred - Y_true) / Y_true), axis=0) * 100  # np.abs()?
     latex_export = {
         "x": np.arange(1, 1025),
-        "mean_err": mean_err,
+        "rel_mae_err": rel_mae_err,
         "std_err": std_err,
         "var_err": var_err,
     }

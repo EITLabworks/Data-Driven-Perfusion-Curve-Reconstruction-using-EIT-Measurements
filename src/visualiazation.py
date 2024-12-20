@@ -23,8 +23,8 @@ def plot_pca(data):
 
 def plot_relative_error_aorta(Y_true, Y_pred, std, var, mean, s_name=None):
     rel_mae_err = np.mean(np.abs((Y_pred - Y_true) / Y_true), axis=0) * 100
-    std_err = np.std((Y_pred - Y_true) / Y_true, axis=0) * 100  # np.abs()?
-    var_err = np.var((Y_pred - Y_true) / Y_true, axis=0) * 100  # np.abs()?
+    std_err = np.std(np.abs((Y_pred - Y_true) / Y_true), axis=0) * 100
+    var_err = np.var(np.abs((Y_pred - Y_true) / Y_true), axis=0) * 100
 
     L = Y_true.shape[0]
 
