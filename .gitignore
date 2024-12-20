@@ -1,0 +1,12 @@
+__pycache__
+hpt_mapper*/
+vae_hpt
+*.ipynb_checkpoints
+engineering.ipynb
+src/weights/vae*.npz
+images/curve_only*.pdf
+images/rel_errvae*.png
+images/aorta_pig*.pdf
+src/weights/vae_model_*.h5
+*.csv
+serious_result*
