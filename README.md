@@ -1,13 +1,5 @@
-# Data-Driven Aortic Pressure Curve Reconstruction using Electrical Impedance Tomographic Measurements
+# Data-Driven Aortic Pressure Curve Reconstruction using Electrical Impedance Measurements
 
 Application of a VAE and a mapper for arterial pressure curve reconstruction of real world experimental data.
 
-
-**Results**
-
-<p align="center">
-    <img src="images/result_1.png" alt="Fig1" width="500px">
-</p>
-<p>
-    <em><b>Figure 1: </b>Mean, standard deviation, and variance of the error between the true and predicted aorta pressure curves visualized along the resampled aorta curve index k.</em>
-</p>
+_Code for the technical papers for publication in the EUSIPCO 2025 Conference Proceedings_
