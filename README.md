@@ -2,4 +2,4 @@
 
 Application of a VAE and a mapper for arterial pressure curve reconstruction of real world experimental data.
 
-_Code for the technical papers for publication in the EUSIPCO 2025 Conference Proceedings_
+_Code for the technical paper for publication in the EUSIPCO 2025 Conference Proceedings._
